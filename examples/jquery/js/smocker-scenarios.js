@@ -18,12 +18,13 @@
       content: [
         {id: 1, title: 'something to do', completed: false},
         {id: 2, title: 'something done', completed: true}
-      ]
+      ],
+      delay: 2
     });
   });
 
   smocker.groupScenarios('scenario1', ['static-fixture', 'store-data']);
   smocker.groupScenarios('scenario2', ['dynamic-fixture', 'store-data']);
 
-  smocker.play('scenario1');
+  smocker.play('scenario2');
 })();

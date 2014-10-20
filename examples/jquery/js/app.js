@@ -41,7 +41,14 @@ jQuery(function ($) {
 	var App = {
 		init: function () {
 			var self = this;
+			$.blockUI({
+				message: '<h2>Please wait</h2><img src="images/ajax-loader.gif" />',
+				fadeIn: 200,
+				fadeOut: 200
+			});
+
 			$.getJSON('/todos', function(data) {
+				$.unblockUI();
 				self.todos = data;
 				self.cacheElements();
 				self.bindEvents();
