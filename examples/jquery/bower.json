@@ -7,6 +7,8 @@
     "director": "~1.2.2",
     "blockui": "latest",
     "smocker": "latest",
-    "sinon": "http://sinonjs.org/releases/sinon-1.10.3.js"
+    "sinon": "http://sinonjs.org/releases/sinon-1.10.3.js",
+    "qunit": "latest",
+    "funcunit": "latest"
   }
 }

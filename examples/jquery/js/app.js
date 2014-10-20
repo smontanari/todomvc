@@ -84,18 +84,29 @@ jQuery(function ($) {
 			list.on('focusout', '.edit', this.update.bind(this));
 			list.on('click', '.destroy', this.destroy.bind(this));
 		},
-		render: function () {
+		renderView: function () {
 			var todos = this.getFilteredTodos();
 			this.$todoList.html(this.todoTemplate(todos));
 			this.$main.toggle(todos.length > 0);
 			this.$toggleAll.prop('checked', this.getActiveTodos().length === 0);
 			this.renderFooter();
 			this.$newTodo.focus();
+		},
+		render: function () {
+			var self = this;
 			$.ajax({
 				type: 'PUT',
-			  dataType: "json",
 			  url: '/todos',
-			  data: this.todos
+			  dataType: "json",
+    		contentType: 'application/json; charset=utf-8',
+			  data: JSON.stringify(this.todos),
+			  error: function(req, status, error) {
+			  	console.error('Ajax error: ' + status + ' - ' + error);
+			  	self.todos = []
+			  },
+			  complete: function() {
+			  	self.renderView();
+			  }
 			});
 		},
 		renderFooter: function () {

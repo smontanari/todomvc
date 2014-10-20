@@ -23,6 +23,25 @@
     });
   });
 
+  smocker.scenario('no_todos', function() {
+    this.get('/todos').respondWith({content: []});
+
+    this.put('/todos').respondWith(function(url, content, headers) {
+      if (content) {
+        data = JSON.parse(content);
+        if (data.length == 1 && data[0].title != 'A Simple todo') {
+          return {
+            status: 400,
+            headers: {'Content-Type': 'text/plain'},
+            content: 'Error. Unexpected request content: ' + content
+          }
+        }
+      }
+      return {status: 204}
+    });
+  });
+
+
   smocker.groupScenarios('scenario1', ['static-fixture', 'store-data']);
   smocker.groupScenarios('scenario2', ['dynamic-fixture', 'store-data']);
 
