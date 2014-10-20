@@ -40,16 +40,18 @@ jQuery(function ($) {
 
 	var App = {
 		init: function () {
-			this.todos = util.store('todos-jquery');
-			this.cacheElements();
-			this.bindEvents();
-
-			Router({
-				'/:filter': function (filter) {
-					this.filter = filter;
-					this.render();
-				}.bind(this)
-			}).init('/all');
+			var self = this;
+			$.getJSON('/todos', function(data) {
+				self.todos = data;
+				self.cacheElements();
+				self.bindEvents();
+				Router({
+					'/:filter': function (filter) {
+						self.filter = filter;
+						self.render();
+					}.bind(self)
+				}).init('/all');
+			});
 		},
 		cacheElements: function () {
 			this.todoTemplate = Handlebars.compile($('#todo-template').html());
@@ -82,7 +84,12 @@ jQuery(function ($) {
 			this.$toggleAll.prop('checked', this.getActiveTodos().length === 0);
 			this.renderFooter();
 			this.$newTodo.focus();
-			util.store('todos-jquery', this.todos);
+			$.ajax({
+				type: 'PUT',
+			  dataType: "json",
+			  url: '/todos',
+			  data: this.todos
+			});
 		},
 		renderFooter: function () {
 			var todoCount = this.todos.length;
