@@ -11,6 +11,8 @@
   "devDependencies": {
     "smocker": "latest",
     "angular-mocks": "1.2.26",
-    "angular-route": "1.2.26"
+    "angular-route": "1.2.26",
+    "qunit": "latest",
+    "funcunit": "latest"
   }
 }

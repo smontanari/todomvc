@@ -41,7 +41,6 @@
     });
   });
 
-
   smocker.groupScenarios('scenario1', ['static-fixture', 'store-data']);
   smocker.groupScenarios('scenario2', ['dynamic-fixture', 'store-data']);
 
