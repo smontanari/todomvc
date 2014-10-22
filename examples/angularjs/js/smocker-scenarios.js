@@ -26,9 +26,17 @@
 
   smocker.groupScenarios('scenario1', ['static-fixture', 'common']);
   smocker.groupScenarios('scenario2', ['dynamic-fixture', 'common']);
-  smocker.play('scenario2');
 
-  angular.module('todomvcTest', ['todomvc', 'smockerE2E']);
+  var bootstrapModule = 'todomvc';
 
-  angular.bootstrap(document, ['todomvcTest']);
+  var match = /[?&]test_scenario=(\w+)($|&.*)/.exec(window.location.search);
+  if (match) {
+    angular.module('todomvcTest', ['todomvc', 'smockerE2E']);
+    var scenarioName = match[1];
+    console.warn("Playing test scenario: " + scenarioName);
+    smocker.play(scenarioName);
+    bootstrapModule = 'todomvcTest';
+  }
+
+  angular.bootstrap(document, [bootstrapModule]);
 })();
