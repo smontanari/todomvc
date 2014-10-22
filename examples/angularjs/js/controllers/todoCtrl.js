@@ -9,7 +9,12 @@ angular.module('todomvc')
 	.controller('TodoCtrl', function TodoCtrl($scope, $routeParams, $filter, todoCollection) {
 		'use strict';
 
-		var todos = $scope.todos = todoCollection.query();
+		$.blockUI({
+			message: '<h2>Please wait</h2><img src="images/ajax-loader.gif" />',
+			fadeIn: 200,
+			fadeOut: 200
+		});
+		var todos = $scope.todos = todoCollection.query($.unblockUI);
 
 		$scope.newTodo = '';
 		$scope.editedTodo = null;
