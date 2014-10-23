@@ -7,6 +7,7 @@
     "handlebars": "~1.3.0",
     "ember": "~1.6.0",
     "ember-data": "1.0.0-beta.7",
-    "ember-localstorage-adapter": "latest"
+    "smocker": "latest",
+    "sinon": "http://sinonjs.org/releases/sinon-1.10.3.js"
   }
 }
