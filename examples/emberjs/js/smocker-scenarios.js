@@ -21,7 +21,8 @@
           {id: "1", title: 'something to do', isCompleted: false},
           {id: "2", title: 'something done', isCompleted: true}
         ]
-      }
+      },
+      delay: 1
     });
   });
 
