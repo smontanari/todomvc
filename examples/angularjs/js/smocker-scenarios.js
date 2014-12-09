@@ -9,7 +9,17 @@
   });
 
   smocker.scenario('common', function() {
-    this.put('/todos').respondWith({ status: 204 });
+    var newTodosCounter = 100;
+    this.get('/api').respondWith("OK");
+    this.put(/\/todos\/\d+/).respondWith({ status: 204 });
+    this.delete(/\/todos\/\d+/).respondWith({ status: 204 });
+    this.post('/todos').respondWith({
+      status: 201,
+      headers: {'Content-Type': 'application/json'},
+      content: {
+        id: newTodosCounter++
+      }
+    });
   });
 
   smocker.scenario('dynamic-fixture', function() {
@@ -25,20 +35,25 @@
   });
 
   smocker.scenario('no_todos', function() {
+    var newTodosCounter = 100;
+    this.get('/api').respondWith("OK");
     this.get('/todos').respondWith({content: []});
 
-    this.put('/todos').respondWith(function(url, content, headers) {
-      if (content) {
-        data = JSON.parse(content);
-        if (data.length == 1 && data[0].title != 'A Simple todo') {
-          return {
-            status: 400,
-            headers: {'Content-Type': 'text/plain'},
-            content: 'Error. Unexpected request content: ' + content
-          }
-        }
+    this.post('/todos').respondWith(function(url, content, headers) {
+      todo = JSON.parse(content);
+      if (todo.title != 'A Simple todo') {
+        return {
+          status: 400,
+          headers: {'Content-Type': 'text/plain'},
+          content: 'Error. Unexpected request content: ' + content
+        };
       }
-      return {status: 204}
+      return {
+        status: 201,
+        content: {
+          id: newTodosCounter++
+        }
+      };
     });
   });
 

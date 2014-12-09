@@ -9,12 +9,6 @@ angular.module('todomvc')
 	.controller('TodoCtrl', function TodoCtrl($scope, $routeParams, $filter, store) {
 		'use strict';
 
-		$.blockUI({
-			message: '<h2>Please wait</h2><img src="images/ajax-loader.gif" />',
-			fadeIn: 200,
-			fadeOut: 200
-		});
-		// var todos = $scope.todos = todoCollection.query($.unblockUI);
 		var todos = $scope.todos = store.todos;
 
 		$scope.newTodo = '';
@@ -24,9 +18,6 @@ angular.module('todomvc')
 			$scope.remainingCount = $filter('filter')(todos, { completed: false }).length;
 			$scope.completedCount = todos.length - $scope.remainingCount;
 			$scope.allChecked = !$scope.remainingCount;
-			// if (newValue !== oldValue) { // This prevents unneeded calls to the local storage
-			// 	todoCollection.update(todos);
-			// }
 		}, true);
 
 		// Monitor the current route for changes and adjust the filter accordingly.

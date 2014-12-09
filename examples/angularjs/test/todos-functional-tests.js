@@ -12,7 +12,7 @@ test("creating a todo item", function() {
 });
 
 test("showing all todos returned from server", function() {
-  F.open('index.html?test_scenario=scenario1');
+  F.open('index.html?test_scenario=scenario2');
 
   F("#todo-list li").visible(function() {
     equal(this.length, 2);

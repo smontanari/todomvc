@@ -21,9 +21,21 @@ angular.module('todomvc')
 			});
 	})
 
-	.factory('api', function ($http) {
+	.factory('api', function ($resource) {
 		'use strict';
 
+		var Todo = $resource('/todos/:id', null, {
+			'clearCompleted': { method: 'DELETE' },
+			'update': { method:'PUT' }
+		});
+
+		var createTodoResource = function(todo) {
+			return new Todo({
+				id: todo.id,
+				title: todo.title,
+				completed: todo.completed
+			});
+		};
 		var store = {
 			todos: [],
 
@@ -41,7 +53,7 @@ angular.module('todomvc')
 
 				angular.copy(incompleteTodos, store.todos);
 
-				return $http.delete('/api/todos')
+				return Todo.clearCompleted().$promise
 					.then(function success() {
 						return store.todos;
 					}, function error() {
@@ -55,8 +67,7 @@ angular.module('todomvc')
 
 				store.todos.splice(store.todos.indexOf(todo), 1);
 
-				return $http.delete('/api/todos/' + todo.id)
-					.then(function success() {
+				return createTodoResource(todo).$delete({id: todo.id}, function success() {
 						return store.todos;
 					}, function error() {
 						angular.copy(originalTodos, store.todos);
@@ -65,19 +76,17 @@ angular.module('todomvc')
 			},
 
 			get: function () {
-				return $http.get('/api/todos')
-					.then(function (resp) {
-						angular.copy(resp.data, store.todos);
+				return Todo.query(function (data) {
+						angular.copy(data, store.todos);
 						return store.todos;
-					});
+					}).$promise;
 			},
 
 			insert: function (todo) {
 				var originalTodos = store.todos.slice(0);
 
-				return $http.post('/api/todos', todo)
-					.then(function success(resp) {
-						todo.id = resp.data.id;
+				return createTodoResource(todo).$save().then(function success(data) {
+						todo.id = data.id;
 						store.todos.push(todo);
 						return store.todos;
 					}, function error() {
@@ -89,8 +98,7 @@ angular.module('todomvc')
 			put: function (todo) {
 				var originalTodos = store.todos.slice(0);
 
-				return $http.put('/api/todos/' + todo.id, todo)
-					.then(function success() {
+				return createTodoResource(todo).$update({id: todo.id}).then(function success() {
 						return store.todos;
 					}, function error() {
 						angular.copy(originalTodos, store.todos);
