@@ -26,11 +26,11 @@ TodoMVC.module('Todos', function (Todos, App, Backbone) {
 		},
 
 		matchesFilter: function (filter) {
-			if (filter == 'all') {
+			if (filter === 'all') {
 				return true;
 			}
 
-			if (filter == 'active') {
+			if (filter === 'active') {
 				return !this.isCompleted();
 			}
 
@@ -45,6 +45,8 @@ TodoMVC.module('Todos', function (Todos, App, Backbone) {
 
 		localStorage: new Backbone.LocalStorage('todos-backbone-marionette'),
 
+		comparator: 'created',
+
 		getCompleted: function () {
 			return this.filter(this._isCompleted);
 		},
@@ -52,8 +54,6 @@ TodoMVC.module('Todos', function (Todos, App, Backbone) {
 		getActive: function () {
 			return this.reject(this._isCompleted);
 		},
-
-		comparator: 'created',
 
 		_isCompleted: function (todo) {
 			return todo.isCompleted();

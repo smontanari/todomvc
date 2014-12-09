@@ -58,6 +58,11 @@
 		}, {
 			"name": "TypeScript & AngularJS",
 			"url": "examples/typescript-angular"
+		}, {
+			"name": "Google Cloud Platform + Express",
+			"url": "http://gcloud-todos.appspot.com",
+			"source_url": "https://github.com/GoogleCloudPlatform/gcloud-node-todos",
+			"type": "backend"
 		}],
 		"link_groups": [{
 			"heading": "Official Resources",
@@ -293,7 +298,7 @@
 	"ampersand": {
 		"name": "Ampersand.js",
 		"description": "A highly modular, loosely coupled, non-frameworky framework for building advanced JavaScript apps.",
-		"homepage": "http://ampersandjs.com",
+		"homepage": "ampersandjs.com",
 		"examples": [{
 			"name": "Architecture Example",
 			"url": "examples/ampersand"
@@ -2216,11 +2221,11 @@
 				"name": "Twitter",
 				"url": "http://twitter.com/vuejs"
 			}, {
-				"name": "Google+ Community",
-				"url": "https://plus.google.com/communities/112229843610661683911"
+				"name": "Gitter Channel",
+				"url": "https://gitter.im/yyx990803/vue"
 			}, {
-				"name": "IRC Channel: #vuejs",
-				"url": "http://freenode.net/faq.shtml#whatwhy"
+				"name": "Discussions on GitHub",
+				"url": "https://github.com/vuejs/Discussion/issues"
 			}]
 		}]
 	},
@@ -2265,6 +2270,6 @@
 		}]
 	},
 	"templates": {
-		"todomvc": "<header> <h3><%= name %></h3> <span class=\"source-links\"> <% if (typeof examples !== 'undefined') { %> <% examples.forEach(function (example) { %> <h5><%= example.name %></h5> <% if (!location.href.match(example.url + '/')) { %> <a class=\"demo-link\" href=\"<%= example.url %>\">Demo</a>, <% } %> <a href=\"https://github.com/tastejs/todomvc/tree/gh-pages/<%= example.source_url ? example.source_url : example.url %>\">Source</a> <% }); %> <% } %> </span> </header> <hr> <blockquote class=\"quote speech-bubble\"> <p><%= description %></p> <footer> <a href=\"http://<%= homepage %>\"><%= name %></a> </footer> </blockquote> <% if (typeof link_groups !== 'undefined') { %> <hr> <% link_groups.forEach(function (link_group) { %> <h4><%= link_group.heading %></h4> <ul> <% link_group.links.forEach(function (link) { %> <li> <a href=\"<%= link.url %>\"><%= link.name %></a> </li> <% }); %> </ul> <% }); %> <% } %> <footer> <hr> <em>If you have other helpful links to share, or find any of the links above no longer work, please <a href=\"https://github.com/tastejs/todomvc/issues\">let us know</a>.</em> </footer>"
+		"todomvc": "<header> <h3><%= name %></h3> <span class=\"source-links\"> <% if (typeof examples !== 'undefined') { %> <% examples.forEach(function (example) { %> <h5><%= example.name %></h5> <% if (!location.href.match(example.url + '/')) { %> <a class=\"demo-link\" data-type=\"<%= example.type === 'backend' ? 'external' : 'local' %>\" href=\"<%= example.url %>\">Demo</a>, <% } if (example.type === 'backend') { %><a href=\"<%= example.source_url %>\"><% } else { %><a href=\"https://github.com/tastejs/todomvc/tree/gh-pages/<%= example.source_url ? example.source_url : example.url %>\"><% } %>Source</a> <% }); %> <% } %> </span> </header> <hr> <blockquote class=\"quote speech-bubble\"> <p><%= description %></p> <footer> <a href=\"http://<%= homepage %>\"><%= name %></a> </footer> </blockquote> <% if (typeof link_groups !== 'undefined') { %> <hr> <% link_groups.forEach(function (link_group) { %> <h4><%= link_group.heading %></h4> <ul> <% link_group.links.forEach(function (link) { %> <li> <a href=\"<%= link.url %>\"><%= link.name %></a> </li> <% }); %> </ul> <% }); %> <% } %> <footer> <hr> <em>If you have other helpful links to share, or find any of the links above no longer work, please <a href=\"https://github.com/tastejs/todomvc/issues\">let us know</a>.</em> </footer>"
 	}
 }
