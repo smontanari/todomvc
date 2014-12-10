@@ -12,14 +12,14 @@ test("creating a todo item", function() {
 });
 
 test("showing all todos returned from server", function() {
-  F.open('index.html?test_scenario=scenario2');
+  F.open('index.html?test_scenario=scenario1');
 
   F("#todo-list li").visible(function() {
     equal(this.length, 2);
-    F('#todo-list li:nth-child(1) label:contains("something to do")').visible();
-    F('#todo-list li:nth-child(1) .toggle:not(:checked)').visible();
-    F('#todo-list li:nth-child(2) label:contains("something done")').visible();
-    F('#todo-list li:nth-child(2) .toggle:checked').visible();
+    F('#todo-list li:nth-of-type(1) label:contains("something to do")').visible();
+    F('#todo-list li:nth-of-type(1) .toggle:not(:checked)').visible();
+    F('#todo-list li:nth-of-type(2) label:contains("something done")').visible();
+    F('#todo-list li:nth-of-type(2) .toggle:checked').visible();
   });
 });
 
