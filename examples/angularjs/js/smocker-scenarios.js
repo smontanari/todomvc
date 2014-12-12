@@ -8,7 +8,7 @@
     this.get('/todos').redirectToFixture('test/fixtures/todos.json');
   });
 
-  smocker.scenario('common', function() {
+  smocker.scenario('store-data', function() {
     var newTodosCounter = 100;
     this.get('/api').respondWith("OK");
     this.put(/\/todos\/\d+/).respondWith({ status: 204 });
@@ -57,8 +57,8 @@
     });
   });
 
-  smocker.groupScenarios('scenario1', ['static-fixture', 'common']);
-  smocker.groupScenarios('scenario2', ['dynamic-fixture', 'common']);
+  smocker.groupScenarios('scenario1', ['static-fixture', 'store-data']);
+  smocker.groupScenarios('scenario2', ['dynamic-fixture', 'store-data']);
 
   var bootstrapModule = 'todomvc';
 
