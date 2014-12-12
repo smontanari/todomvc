@@ -3,8 +3,11 @@
 	'use strict';
 
 	// Basic Todo entry model
-	var Todo = can.Model.LocalStorage.extend({
-		storageName: 'todos-canjs'
+	var Todo = can.Model.extend({
+		findAll: "GET /todos",
+		create:  'POST /todos',
+	  update:  'PUT /todos/{id}',
+	  destroy: 'DELETE /todos/{id}'
 	}, {
 		init: function () {
 			// Autosave when changing the text or completing the todo

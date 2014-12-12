@@ -4,14 +4,14 @@
 
 	var ESCAPE_KEY = 27;
 
-	can.Component.extend({
+	var component = {
 		// Create this component on a tag  like `<todo-app>`.
 		tag: 'todo-app',
 		scope: {
 			// Store the Todo model in the scope
 			Todo: namespace.Models.Todo,
 			// A list of all Todos retrieved from LocalStorage
-			todos: new namespace.Models.Todo.List({}),
+			todos: new namespace.Models.Todo.List(),
 			// Edit a Todo
 			edit: function (todo, el) {
 				todo.attr('editing', true);
@@ -93,5 +93,16 @@
 				return num() === 1 ? singular : singular + 's';
 			}
 		}
+	};
+
+	$.blockUI({
+		message: '<h2>Please wait</h2><img src="images/ajax-loader.gif" />',
+		fadeIn: 200,
+		fadeOut: 200
 	});
+	component.scope.Todo.findAll({}, function(todos) {
+		todos.forEach(function(todo) {component.scope.todos.push(todo);});
+		$.unblockUI();
+	});
+	can.Component.extend(component);
 })(this);
