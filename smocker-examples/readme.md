@@ -25,5 +25,5 @@ At the moment these examples include two scenarios (the code is in the *js/smock
 - **scenario2**: this scenario defines a *dynamic fixture* which returns the data after a delay of 2 seconds, so that you also have the time to observe a simple overlay displayed by the application while waiting for the response.
 
 ### Automated functional tests with Funcunit
-If you want to take it one step further open the functional-tests.html file in your browser and see the execution of a few of functional tests (implemented with [**Funcunit**](http://funcunit.com/)). This is to show how quickly you can run functional tests for a single page javascript Web Application without having to run any backend server.
+If you want to take it one step further open the functional-tests.html file in your browser and observe the execution of a few of functional tests implemented with [**Funcunit**](http://funcunit.com/). This is to show how quickly you can run functional tests for a single page javascript Web Application without having to run any backend server.
 > **Note**: in order to execute the tests successfully you will have to allow popup to be opened for that url/file. In Chrome you can simply add the "--disable-popup-blocking" switch when launching the browser.
