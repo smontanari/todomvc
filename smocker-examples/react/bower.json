@@ -1,0 +1,15 @@
+{
+  "name": "todomvc-react",
+  "version": "0.0.0",
+  "dependencies": {
+    "todomvc-common": "~0.3.0",
+    "director": "~1.2.0",
+    "jquery": "~2.1.1",
+    "react": "~0.12.0",
+    "blockui": "latest",
+    "smocker": "latest",
+    "sinon": "http://sinonjs.org/releases/sinon-1.12.2.js",
+    "qunit": "latest",
+    "funcunit": "latest"
+  }
+}
