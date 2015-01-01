@@ -47,13 +47,13 @@ jQuery(function ($) {
 				fadeOut: 200
 			});
 
-			$.getJSON('/todos', function(data) {
+			$.getJSON('/todos').done(function(data) {
 				$.unblockUI();
 				self.todos = data;
 				self.cacheElements();
 				self.bindEvents();
 				Router({
-					'/:filter': function (filter) {
+					'/:filter': function(filter) {
 						self.filter = filter;
 						self.render();
 					}.bind(self)
@@ -96,17 +96,15 @@ jQuery(function ($) {
 			var self = this;
 			$.ajax({
 				type: 'PUT',
-			  url: '/todos',
-			  dataType: "json",
-    		contentType: 'application/json; charset=utf-8',
-			  data: JSON.stringify(this.todos),
-			  error: function(req, status, error) {
-			  	console.error('Ajax error: ' + status + ' - ' + error);
-			  	self.todos = []
-			  },
-			  complete: function() {
-			  	self.renderView();
-			  }
+				url: '/todos',
+				dataType: "json",
+				contentType: 'application/json; charset=utf-8',
+				data: JSON.stringify(this.todos)
+			}).fail(function(req, status, error) {
+				console.error('Ajax error: ' + status + ' - ' + error);
+				self.todos = [];
+			}).always(function() {
+				self.renderView();
 			});
 		},
 		renderFooter: function () {
