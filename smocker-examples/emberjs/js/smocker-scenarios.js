@@ -18,8 +18,9 @@
       headers: {'Content-Type': 'application/json'},
       content: {
         todos: [
-          {id: "1", title: 'something to do', isCompleted: false},
-          {id: "2", title: 'something done', isCompleted: true}
+          {id: "1", title: 'item 1', isCompleted: false},
+          {id: "2", title: 'item 2', isCompleted: true},
+          {id: "3", title: 'item 3', isCompleted: false}
         ]
       },
       delay: 1

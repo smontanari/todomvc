@@ -20,8 +20,9 @@
       status: 200,
       headers: {'Content-Type': 'application/json'},
       content: [
-        {id: 1, title: 'something to do', completed: false},
-        {id: 2, title: 'something done', completed: true}
+        {id: 1, title: 'item 1', completed: false},
+        {id: 2, title: 'item 2', completed: true},
+        {id: 3, title: 'item 3', completed: false}
       ],
       delay: 2
     });
