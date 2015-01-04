@@ -14,7 +14,6 @@
     this.delete('/todos/{id}').respondWith({ status: 204 });
     this.post('/todos').respondWith({
       status: 201,
-      headers: {'Content-Type': 'application/json'},
       content: {
         id: newTodosCounter++
       }
@@ -23,8 +22,6 @@
 
   smocker.scenario('dynamic-fixture', function() {
     this.get('/todos').respondWith({
-      status: 200,
-      headers: {'Content-Type': 'application/json'},
       content: [
         {id: 1, text: 'item 1', complete: false},
         {id: 2, text: 'item 2', complete: true},
@@ -42,7 +39,6 @@
       if (todo.text != 'A Simple todo') {
         return {
           status: 400,
-          headers: {'Content-Type': 'text/plain'},
           content: 'Error. Unexpected request content: ' + content
         }
       }

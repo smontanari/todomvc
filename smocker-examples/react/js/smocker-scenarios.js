@@ -17,8 +17,6 @@
 
   smocker.scenario('dynamic-fixture', function() {
     this.get('/todos').respondWith({
-      status: 200,
-      headers: {'Content-Type': 'application/json'},
       content: [
         {id: 1, title: 'item 1', completed: false},
         {id: 2, title: 'item 2', completed: true},
@@ -38,7 +36,6 @@
         if (data.length == 1 && data[0].title != 'A Simple todo') {
           return {
             status: 400,
-            headers: {'Content-Type': 'text/plain'},
             content: 'Error. Unexpected request content: ' + content
           }
         }
