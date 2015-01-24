@@ -9,10 +9,10 @@ These examples contain the same practical scenarios for each library. The intent
 Once you have cloned/downloaded this repository, you will have download the javascript dependencies by executing `bower install` from the example directory of your library of choice.
 
 ### How to run
-You should be able to run these examples the same way you run the originals, i.e. by opening the index.html file in your browser. However, sMocker will not trigger any scenario unless explicitly instructed through the *test_scenario* parameter appended to the url.
+You should be able to run these examples the same way you run the originals, i.e. by opening the index.html file in your browser. However, sMocker will not trigger any scenario unless explicitly instructed through the *smocker_scenario* parameter appended to the url.
 
 For instance, in order to run "scenario1" for the angularjs example you will need to open the following file url in your browser:
-"**file:///.../todomvc/smocker-examples/angularjs/index.html?test_scenario=scenario1**"
+"**file:///.../todomvc/smocker-examples/angularjs/index.html?smocker_scenario=scenario1**"
 
 > **Chrome users:** Chrome is not very friendly when running/downloading javascript from the local file system, so one option is to start your Chrome browser from the command line with the following flag:
 

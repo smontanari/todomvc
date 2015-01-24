@@ -47,7 +47,7 @@
   smocker.groupScenarios('scenario1', ['static-fixture', 'store-data', 'load-templates']);
   smocker.groupScenarios('scenario2', ['dynamic-fixture', 'store-data', 'load-templates']);
 
-  var match = /[?&]test_scenario=(\w+)($|&.*)/.exec(window.location.search);
+  var match = /[?&]smocker_scenario=(\w+)($|&.*)/.exec(window.location.search);
   if (match) {
     var scenarioName = match[1];
     console.warn("Playing test scenario: " + scenarioName);

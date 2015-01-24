@@ -12,11 +12,11 @@
     var newTodosCounter = 100;
     this.put('/todos/{id}').respondWith({ status: 204 });
     this.delete('/todos/{id}').respondWith({ status: 204 });
-    this.post('/todos').respondWith({
-      status: 201,
-      content: {
-        id: newTodosCounter++
-      }
+    this.post('/todos').respondWith(function(url, data, headers) {
+      return {
+        status: 201,
+        content: { id: newTodosCounter++, title: data.title, completed: data.completed }
+      };
     });
   });
 
@@ -49,7 +49,7 @@
   smocker.groupScenarios('scenario1', ['static-fixture', 'store-data']);
   smocker.groupScenarios('scenario2', ['dynamic-fixture', 'store-data']);
 
-  var match = /[?&]test_scenario=(\w+)($|&.*)/.exec(window.location.search);
+  var match = /[?&]smocker_scenario=(\w+)($|&.*)/.exec(window.location.search);
   if (match) {
     var scenarioName = match[1];
     console.warn("Playing test scenario: " + scenarioName);

@@ -13,10 +13,11 @@
     this.get('/api').respondWith("OK");
     this.put(/\/todos\/\d+/).respondWith({ status: 204 });
     this.delete(/\/todos\/\d+/).respondWith({ status: 204 });
-    this.post('/todos').respondWith({
-      status: 201,
-      content: {
-        id: newTodosCounter++
+    this.post('/todos').respondWith(function(url, data, headers) {
+      todo = JSON.parse(data);
+      return {
+        status: 201,
+        content: { id: newTodosCounter++, title: todo.title, completed: todo.completed }
       }
     });
   });
@@ -59,7 +60,7 @@
 
   var bootstrapModule = 'todomvc';
 
-  var match = /[?&]test_scenario=(\w+)($|&.*)/.exec(window.location.search);
+  var match = /[?&]smocker_scenario=(\w+)($|&.*)/.exec(window.location.search);
   if (match) {
     angular.module('todomvcTest', ['todomvc', 'smockerE2E']);
     var scenarioName = match[1];
