@@ -56,7 +56,7 @@ jQuery(function ($) {
 					'/:filter': function(filter) {
 						self.filter = filter;
 						self.render();
-					}.bind(self)
+					}
 				}).init('/all');
 			});
 		},

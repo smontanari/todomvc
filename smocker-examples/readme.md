@@ -14,7 +14,7 @@ You should be able to run these examples the same way you run the originals, i.e
 For instance, in order to run "scenario1" for the angularjs example you will need to open the following file url in your browser:
 "**file:///.../todomvc/smocker-examples/angularjs/index.html?smocker_scenario=scenario1**"
 
-> **Chrome users:** Chrome is not very friendly when running/downloading javascript from the local file system, so one option is to start your Chrome browser from the command line with the following flag:
+> **Chrome users:** Chrome by default is not very friendly when running/downloading javascript from the local file system. One option is to start your Chrome browser from the command line with the following flag:
 
 	$ <path-to-chrome-app> --allow-file-access-from-files
 
@@ -24,6 +24,8 @@ At the moment these examples include two scenarios (the code is in the *js/smock
 - **scenario1**: this scenario shows how to use a *static fixture* in sMocker, i.e. how to stub the response data simply through an external file.
 - **scenario2**: this scenario defines a *dynamic fixture* which returns the data after a delay of 2 seconds, so that you also have the time to observe a simple overlay displayed by the application while waiting for the response.
 
-### Automated functional tests with Funcunit
-If you want to take it one step further open the functional-tests.html file in your browser and observe the execution of a few of functional tests implemented with [**Funcunit**](http://funcunit.com/). This is to show how quickly you can run functional tests for a single page javascript Web Application without having to run any backend server.
-> **Note**: in order to execute the tests successfully you will have to allow popup to be opened for that url/file. In Chrome you can simply add the "--disable-popup-blocking" switch when launching the browser.
+### Automated functional tests with FuncUnit
+If you want to take it one step further open the functional-tests.html file in your browser and observe the execution of a few of functional tests implemented with [**FuncUnit**](http://funcunit.com/). This is to show how quickly you can run functional tests for a single page javascript Web Application using only the browser.
+> **Note**: in order to execute the tests successfully you will have to allow popup to be opened for that url/file. In Chrome this becomes
+
+    $ <path-to-chrome-app> --allow-file-access-from-files --disable-popup-blocking
